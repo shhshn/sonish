@@ -3,7 +3,7 @@
 
 ## Getting Started
 
-Only a Python snippet is needed to make it happen
+Just write a Python snippet like this:
 
 ```python
 def main():
@@ -16,10 +16,10 @@ def main():
     print(d[5])
 ```
 
-And it just runs like C++
+Then it runs as C++:
 
 ```console
-$ cat demo.py | make
+$ cat demo.py | make run
 $ ./a.out
 Hello and, again!
 3
@@ -44,6 +44,7 @@ The goal of the project, and a major difference from others, is to support a sma
 
 ### Unsupported Features
 
+- `compile` and `eval`
 - Comprehensions
 - Closures
 - Generators
@@ -54,4 +55,5 @@ The goal of the project, and a major difference from others, is to support a sma
 
 - https://github.com/google/tmppy
 - https://github.com/google/grumpy
+- https://github.com/wmww/Python-plus-plus
 - https://preshing.com/20141202/cpp-has-become-more-pythonic/
