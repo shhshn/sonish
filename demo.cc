@@ -8,7 +8,7 @@ int main() {
   l.push_back(1);
   for (auto x : l)
     std::cout << x << std::endl;
-  auto d = std::unordered_map<int, const char *>{{5, "HUGE"}, {6, "SUCESS"}};
-  std::cout << d[6] << std::endl;
+  auto d = std::unordered_map<int, const char *>{{4, "HUGE"}, {5, "SUCESS"}};
+  std::cout << d[5] << std::endl;
   return 0;
 }

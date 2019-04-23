@@ -34,7 +34,7 @@ Technically speaking, there is nothing but a Python to C++ compiler (*transcompi
 
 The goal of the project, and a major difference from others, is to support a small subset of Python and C++ (*intersection*), which will benefit from several techniques incompatible with a full Python to C++ compiler.
 
-## Supported Python Features
+## Supported Features
 
 - Integers
 - Lists
@@ -55,5 +55,6 @@ The goal of the project, and a major difference from others, is to support a sma
 
 - https://github.com/google/tmppy
 - https://github.com/google/grumpy
+- https://github.com/lukasmartinelli/py14
 - https://github.com/wmww/Python-plus-plus
 - https://preshing.com/20141202/cpp-has-become-more-pythonic/
