@@ -1,10 +1,20 @@
 
-.PHONY: default run
+SHELL := /bin/bash
+DIR := sonish
+PYTHON := python3
+CPP := c++ -x c++
+
+.PHONY: test
 .SECONDARY:
 
-default:
-	python3 dev.py -f demo.py | c++ -x c++ /dev/stdin
+%:
+	$(PYTHON) $(DIR)/dev.py -f $@.py | $(CPP) /dev/stdin -o $@
 
-run:
-	cat /dev/stdin | python3 poc.py | c++ -x c++ /dev/stdin
-#	c++ -std=c++14
+test/demo:
+	$(PYTHON) $(DIR)/poc.py <$@.py | $(CPP) /dev/stdin -o $@
+
+test: test/demo
+	diff -q <($(PYTHON) $<.py) <(./$<)
+
+clean:
+	rm -f test/demo
