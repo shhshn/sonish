@@ -16,6 +16,7 @@ def main():
     print(parse(tree))
 
 def parse(x):
+    # TODO: make use of a pseudo switch made of {ast.foobar:foobar()}
     if isinstance(x, ast.Dict):
         return "std::unordered_map<int, const char *>{%s}" % \
             ", ".join("{%s, %s}" % (parse(k), parse(v)) for k, v in zip(x.keys, x.values))
