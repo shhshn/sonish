@@ -1,7 +1,7 @@
 
 # Sonish: Python-ish syntax sugar added to C++
 
-Sonish is yet another restricted Python to C++ compiler, which takes static Python code (without `eval`) as input and then generates C++ code as output.
+Sonish is yet another Python to C++ compiler that generates C++ snippet from restricted Python code.
 
 ## Getting Started
 
@@ -32,9 +32,11 @@ SUCCESS
 
 ## How It Works
 
-Technically speaking, there is nothing but a Python to C++ compiler (*transcompiler*), which works like a Python-ish frontend added to C++ backend.
+Technically speaking, there is nothing but a Python to C++ compiler (*transcompiler*),
+which works like a Python-ish frontend added to C++.
 
-The goal of the project, and a major difference from others, is to support only a small but modern subset of Python and C++, which will benefit from several techniques incompatible with a full Python to C++ compiler.
+The goal of the project, and a major difference from others, is to support only a small but modern subset of Python and C++.
+In that way we benefit from several techniques incompatible with a full Python to C++ compiler.
 
 ## Supported Features
 
