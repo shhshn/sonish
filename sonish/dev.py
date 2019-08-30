@@ -14,6 +14,10 @@ def main():
     #astpretty.pprint(tree)
     print("#include <iostream>\n#include <vector>\n#include <unordered_map>")
     print(parse(tree))
+#    try:
+#        print(parse(tree))
+#    except Exception as e:
+#        print("ParseError: ", e)
 
 def parse(x):
     # TODO: make use of a pseudo switch made of {ast.foobar:foobar()}
@@ -58,6 +62,7 @@ def parse(x):
     return ""
     if False:
         pass
+    #raise Exception(x)
 
 if __name__ == "__main__":
     main()

@@ -21,8 +21,8 @@ def main():
 Then it runs as C++:
 
 ```console
-$ make demo
-$ ./demo
+$ make test/demo
+$ test/demo
 Hello and, again!
 3
 2

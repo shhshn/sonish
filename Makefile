@@ -7,14 +7,19 @@ CPP := c++ -x c++
 .PHONY: test
 .SECONDARY:
 
-%:
-	$(PYTHON) $(DIR)/dev.py -f $@.py | $(CPP) /dev/stdin -o $@
-
 test/demo:
-	$(PYTHON) $(DIR)/poc.py <$@.py | $(CPP) /dev/stdin -o $@
 
-test: test/demo
-	diff -q <($(PYTHON) $<.py) <(./$<)
+test: $(subst .py,.diff,$(wildcard test/*.py))
 
 clean:
-	rm -f test/demo
+	rm -f $(basename $(wildcard test/*.py))
+
+%.diff: %.compile
+	diff -q <($(PYTHON) $*.py) <($*)
+%.compile:
+	$(PYTHON) $(DIR)/dev.py -f $(basename $@).py | $(CPP) /dev/stdin -o $(basename $@)
+
+test/demo: test/demo.compile
+
+test/demo.compile:
+	$(PYTHON) $(DIR)/poc.py <$(basename $@).py | $(CPP) /dev/stdin -o $(basename $@)
