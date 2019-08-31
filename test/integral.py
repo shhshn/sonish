@@ -1,6 +1,12 @@
-def integrate(f, a, b, dx):
+def f(x):
+    return x * x
+
+def integrate(a, b, dx):
     S = 0.0
     x = a
+    x_dx = 0
+    A = 0
+    B = 0
     while x < b:
         x_dx = x + dx
         if x + dx > b:
@@ -11,14 +17,14 @@ def integrate(f, a, b, dx):
         x = x + dx
     return S
 
-def f(x):
-    return x * x
-
-i = 0
-while i < 10:
-    print integrate(f, 0.0, 1.0, 0.1)
-    print integrate(f, 0.0, 1.0, 0.01)
-    print integrate(f, 0.0, 1.0, 0.001)
-    print integrate(f, 0.0, 1.0, 0.0001)
-    i = i + 1
+def main():
+    i = 0
+    while i < 10:
+        print(integrate(0.0, 1.0, 0.1))
+        print(integrate(0.0, 1.0, 0.01))
+        print(integrate(0.0, 1.0, 0.001))
+        print(integrate(0.0, 1.0, 0.0001))
+        i = i + 1
     
+if __name__ == "__main__":
+    main()

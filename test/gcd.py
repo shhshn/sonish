@@ -20,10 +20,13 @@ def fib(n):
     else:
         return fib(n - 1) + fib(n - 2)
 
-print gcd(fib(15), fib(14))
-print gcd(fib(17), fib(16))
-print gcd(fib(19), fib(18))
-print gcd(fib(21), fib(20))
-print gcd(fib(23), fib(22))
-print gcd(fib(25), fib(24))
+def main():
+    print(gcd(fib(15), fib(14)))
+    print(gcd(fib(17), fib(16)))
+    print(gcd(fib(19), fib(18)))
+    print(gcd(fib(21), fib(20)))
+    print(gcd(fib(23), fib(22)))
+    print(gcd(fib(25), fib(24)))
 
+if __name__ == "__main__":
+    main()
