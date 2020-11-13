@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import argparse, ast, astpretty, sys
+import argparse, ast, sys
 
 def main():
     parser = argparse.ArgumentParser()
@@ -10,19 +10,22 @@ def main():
     with open(args.file) as file:
         source = file.read()
     tree = ast.parse(source)
-    #print(ast.dump(tree))
-    print("#include <iostream>\n#include <vector>\n#include <unordered_map>")
-#    print(parse(tree))
+#    import astpretty
+#    astpretty.pprint(tree)
+#    print(ast.dump(tree))
+#    return
+    print("#include <iostream>\n#include <vector>\n#include <unordered_map>\n#include <iomanip>")
+    print()
     try:
         print(parse(tree))
     except Exception as e:
-        astpretty.pprint(tree)
+#        astpretty.pprint(tree)
         sys.exit("ParseError: %s" % e)
 #    print(globals()["parse"](tree))
 #    print("#", str(tree), "#")
 
 def parse(x, declare = False):
-    # TODO: make use of a pseudo switch made of {ast.foobar:foobar()}
+    # TODO: make use of a pseudo switch using {ast.foobar:foobar()}
     if isinstance(x, ast.If):
         test = parse(x.test)
         if "__name__" in test and "==" in test and "__main__" in test: return ""
@@ -54,9 +57,9 @@ def parse(x, declare = False):
     if isinstance(x, ast.Return):
         return "return %s;" % parse(x.value)
     if isinstance(x, ast.BinOp):
-        return parse(x.left) + parse(x.op) + parse(x.right)
+        return "(%s %s %s)" % (parse(x.left), parse(x.op), parse(x.right))
     if isinstance(x, ast.Compare):
-        return parse(x.left) + " ".join(parse(o) for o in x.ops) + " ".join(parse(c) for c in x.comparators)
+        return parse(x.left) +" "+ " ".join(parse(o) for o in x.ops) +" "+ " ".join(parse(c) for c in x.comparators)
     if isinstance(x, ast.While):
         return "while (" + parse(x.test) + ") {\n    " + \
             "\n    ".join(parse(line) for line in x.body) + \
@@ -69,7 +72,7 @@ def parse(x, declare = False):
     if isinstance(x, ast.List):
         return "std::vector<int>{%s}" % ", ".join(parse(element) for element in x.elts)
     if isinstance(x, ast.Assign):
-        # TODO support tuple targets
+        # TODO: support tuple targets
         if declare:
             return "auto %s = %s;" % (parse(x.targets[0]), parse(x.value))
         else:
@@ -92,17 +95,17 @@ def parse(x, declare = False):
                 return "%s.push_back(%s);" % (parse(x.func.value), parse(x.args[0]))
         if isinstance(x.func, ast.Name):
             if x.func.id == "print":
-                return "std::cout << " + \
+                return "std::cout << std::fixed << std::setprecision(17) << " + \
                     " << ".join(parse(line) for line in x.args) + \
                     " << std::endl;"
         return "%s(%s)" % (parse(x.func), ", ".join(parse(a) for a in x.args))
     if isinstance(x, ast.Expr):
         return parse(x.value)
     if isinstance(x, ast.FunctionDef):
-        return "int %s(%s) {\n" % (x.name, ", ".join("auto " + a.arg for a in x.args.args)) + \
+        typename = "int" if x.name == "main" else "auto"
+        return "%s %s(%s) {\n" % (typename, x.name, ", ".join("auto " + a.arg for a in x.args.args)) + \
             "\n".join(parse(line, declare = True) for line in x.body) + \
-            "return 0;\n" + \
-            "}\n"
+            "%s}\n" % ("return 0;\n" if x.name == "main" else "")
     if isinstance(x, ast.Module):
         return "\n".join(parse(line) for line in x.body)
     raise Exception(x)

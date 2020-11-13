@@ -5,7 +5,7 @@ Sonish is yet another Python to C++ compiler that generates C++ snippet from res
 
 ## Getting Started
 
-Just write down a Python snippet like this:
+Just write down a Python snippet like the following.
 
 ```python
 def main():
@@ -18,10 +18,10 @@ def main():
     print(d[5])
 ```
 
-Then it runs as C++:
+After that, specify the file path to `make`, by replacing the `.py` extension with `.compile`.
 
 ```console
-$ make test/demo
+$ make test/demo.compile
 $ test/demo
 Hello and, again!
 3
@@ -30,13 +30,15 @@ Hello and, again!
 SUCCESS
 ```
 
+As you can see, the Python snippet runs as C++!
+
 ## How It Works
 
 Technically speaking, there is nothing but a Python to C++ compiler (*transcompiler*),
 which works like a Python-ish frontend added to C++.
 
-The goal of the project, and a major difference from others, is to support only a small but modern subset of Python and C++.
-In that way we benefit from several techniques incompatible with a full Python to C++ compiler.
+The project goal, and a major difference from others, is to support only a small but modern subset of Python and C++.
+In that way, we benefit from several techniques incompatible with a full Python to C++ compiler.
 
 ## Supported Features
 
@@ -57,10 +59,12 @@ In that way we benefit from several techniques incompatible with a full Python t
 - Big numbers
 
 ## Related Work
-
 - https://github.com/google/tmppy
 - https://github.com/google/grumpy
 - https://github.com/shedskin/shedskin
 - https://github.com/lukasmartinelli/py14
 - https://github.com/wmww/Python-plus-plus
 - https://preshing.com/20141202/cpp-has-become-more-pythonic/
+
+and
+- https://github.com/hayamiz/minipy (we use test data obtained from this repo)

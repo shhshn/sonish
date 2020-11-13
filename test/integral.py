@@ -4,9 +4,9 @@ def f(x):
 def integrate(a, b, dx):
     S = 0.0
     x = a
-    x_dx = 0
-    A = 0
-    B = 0
+    x_dx = 0.0
+    A = 0.0
+    B = 0.0
     while x < b:
         x_dx = x + dx
         if x + dx > b:
