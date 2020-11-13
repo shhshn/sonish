@@ -65,6 +65,4 @@ In that way, we benefit from several techniques incompatible with a full Python 
 - https://github.com/lukasmartinelli/py14
 - https://github.com/wmww/Python-plus-plus
 - https://preshing.com/20141202/cpp-has-become-more-pythonic/
-
-and
-- https://github.com/hayamiz/minipy (we use test data obtained from this repo)
+- https://github.com/hayamiz/minipy (our test data is forked from this repo)

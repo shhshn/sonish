@@ -95,7 +95,7 @@ def parse(x, declare = False):
                 return "%s.push_back(%s);" % (parse(x.func.value), parse(x.args[0]))
         if isinstance(x.func, ast.Name):
             if x.func.id == "print":
-                return "std::cout << std::fixed << std::setprecision(17) << " + \
+                return "std::cout << std::setprecision(17) << " + \
                     " << ".join(parse(line) for line in x.args) + \
                     " << std::endl;"
         return "%s(%s)" % (parse(x.func), ", ".join(parse(a) for a in x.args))
